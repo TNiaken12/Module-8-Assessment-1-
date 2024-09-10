@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: aliceblue;
+        }
+        form {
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+
+    <div id="dashboardContent" style="display: none;">
+    </div>
+
+    <script >
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    console.log('Username:', username);
+    console.log('Password:', password);
+
+    // Replace this with your actual authentication logic
+    if (username === 'talia12' && password === '007') {
+        console.log('Authentication successful');
+        // Show a loading message while processing
+        document.getElementById('loginForm').innerHTML = 'Logging in...';
+
+        // Use setTimeout to simulate a delay before redirecting
+        setTimeout(function() {
+            // Successful login, hide login form and display dashboard content
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('dashboardContent').style.display = 'block';
+        }, 1000);
+    } else {
+        console.log('Authentication failed');
+        // Invalid login, display an error message
+        alert('Invalid username or password.');
+    }
+});
+
+    </script>
+</body>
+</html>
