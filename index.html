@@ -24,7 +24,7 @@
             border: 1px solid #ccc;
             border-radius: 3px;
         }
-        button {
+        a {
             padding: 8px 12px;
             background-color: #4CAF50;
             color: white;
@@ -41,8 +41,9 @@
         <br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
+        <p id="messages" ></p>
         <br>
-        <button type="submit">Login</button>
+       <a href="#" onclick="verifyUser()">Log in</a>
     </form>
 
     <div id="dashboardContent" style="display: none;">
@@ -50,33 +51,23 @@
 
     <script >
 
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+        function verifyUser(){
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            checkUserCreds(username, password);
+        }
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
 
-    console.log('Username:', username);
-    console.log('Password:', password);
+        function checkUserCreds(username, password){
+            var systemUsername = "Bond";
+            var systemPassword = "007";
 
-    // Replace this with your actual authentication logic
-    if (username === 'talia12' && password === '007') {
-        console.log('Authentication successful');
-        // Show a loading message while processing
-        document.getElementById('loginForm').innerHTML = 'Logging in...';
-
-        // Use setTimeout to simulate a delay before redirecting
-        setTimeout(function() {
-            // Successful login, hide login form and display dashboard content
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('dashboardContent').style.display = 'block';
-        }, 1000);
-    } else {
-        console.log('Authentication failed');
-        // Invalid login, display an error message
-        alert('Invalid username or password.');
-    }
-});
+            if(username == systemUsername && password == systemPassword){
+            document.getElementById("messages").innerHTML = "Correct. Logging you in...";
+            }else{
+            document.getElementById("messages").innerHTML = "Username or Password are incorrect.";
+            }
+        }
 
     </script>
 </body>
